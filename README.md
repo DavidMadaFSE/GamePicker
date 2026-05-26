@@ -24,6 +24,18 @@ Completed so far:
 - Added basic exception handling
 - Tested the backend using Postman
 
+### Week 2 Complete
+
+The Week 2 goal was to build a search, sort, and pagination API for getting games.
+
+Completed so far:
+
+- GET /api/games has pagination implemented
+- GET /api/games has sorting implemented
+- GET /api/games has a filter implemented e.g. (search for title, releaseDate, genre, platform)
+- Added sample data for the games entity
+- Tested the search functionality with Postman
+
 ---
 
 ## Project Goal
@@ -156,18 +168,16 @@ During Week 1, I practiced:
 
 ---
 
-## Week 2 Focus
+## What I learned In Week 2
 
-Week 2 will focus on improving the game API and making it more professional.
+During week 2, I practiced:
 
-Planned Week 2 work:
-
-- Improve relationships between games, genres, and platforms
+- Improving relationships between games, genres, and platforms
 - Improve filtering by title, genre, and platform
-- Add pagination to game results
-- Add sorting to game results
-- Improve validation messages
-- Improve error response formatting
+- Add pagination to game results e.g. (/api/games)
+- Add sorting to game results e.g. (/api/games)
+- Improved validation messages
+- Improved error response formatting
 - Add more sample game data
 - Continue testing with Postman
 - Update the README with Week 2 progress
@@ -202,11 +212,15 @@ This project is currently in early development.
 Current milestone:
 
 ```text
-Week 1 complete: Core Spring Boot backend foundation is working.
+Week 1 (complete): Core Spring Boot backend foundation is working.
+```
+
+```text
+Week 2 (complete): The main games GET API can now search games with filters such as title, releaseDate, genre, and platform. The API pagination and sorting functionality is working.
 ```
 
 Next milestone:
 
 ```text
-Week 2: Make the Game API clean, searchable, filterable, paginated, and professional.
+Week 3 (in-progress): User register and login functionality with Spring Security incorporated with it also a library where users can save their games to.
 ```
