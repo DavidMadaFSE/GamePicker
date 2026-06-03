@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.david.nextplay.dto.CreateGameRequest;
-import com.david.nextplay.dto.GameResponse;
+import com.david.nextplay.dto.game.CreateGameRequest;
+import com.david.nextplay.dto.game.GameResponse;
 import com.david.nextplay.enums.Genre;
 import com.david.nextplay.enums.Platform;
 import com.david.nextplay.service.GameService;

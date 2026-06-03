@@ -1,4 +1,4 @@
-package com.david.nextplay.dto;
+package com.david.nextplay.dto.game;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,8 +1,35 @@
 # NextPlay Backend
 
-NextPlay is a Spring Boot backend for a game discovery and recommendation platform. The goal of this project is to help users discover games, manage game data, and eventually receive personalized recommendations based on ratings, reviews, genres, platforms, and user activity.
+NextPlay is a Spring Boot backend for a game discovery and recommendation platform.
 
-This project is being built step-by-step while relearning and practicing Spring Boot.
+The goal of this project is to help users browse games, search and filter game data, save games to a personal library, track game progress, and eventually receive personalized recommendations based on ratings, reviews, genres, platforms, and user activity.
+
+This project is being built step-by-step while relearning and practicing Spring Boot backend development.
+
+---
+
+## Project Goal
+
+The final goal of NextPlay is to become a full backend platform where users can:
+
+- Browse games
+- Search and filter games
+- View game details
+- Create accounts
+- Log in securely
+- Save games to a personal library
+- Track games as want to play, playing, completed, or dropped
+- Rate and review games
+- Receive personalized game recommendations
+- View trending and top-rated games
+
+Admin users will eventually be able to:
+
+- Add games
+- Update games
+- Delete games
+- Manage game information
+- Moderate reviews
 
 ---
 
@@ -26,39 +53,54 @@ Completed so far:
 
 ### Week 2 Complete
 
-The Week 2 goal was to build a search, sort, and pagination API for getting games.
+The Week 2 goal was to build a search, filter, pagination, and sorting API for retrieving games.
 
 Completed so far:
 
-- GET /api/games has pagination implemented
-- GET /api/games has sorting implemented
-- GET /api/games has a filter implemented e.g. (search for title, releaseDate, genre, platform)
-- Added sample data for the games entity
-- Tested the search functionality with Postman
+- Added pagination for game results
+- Added sorting for game results
+- Added filtering by title, release date, genre, and platform
+- Added sample game data
+- Improved validation messages
+- Improved error response formatting
+- Tested search, filtering, pagination, and sorting with Postman
+
+### Week 3 Complete
+
+The Week 3 goal was to add user authentication with Spring Security and build a personal game library feature.
+
+Completed so far:
+
+- Added user registration
+- Added user login
+- Added JWT-based authentication
+- Implemented a custom JWT filter
+- Protected important API endpoints
+- Added a user game library feature
+- Allowed users to add existing games to their library
+- Allowed users to view their personal library
+- Allowed users to update the status of games in their library
+- Allowed users to delete games from their library
+- Added custom exception handling for authentication and library features
+- Tested all Week 3 endpoints using Postman
 
 ---
 
-## Project Goal
+## Core Features Implemented
 
-The final goal of NextPlay is to become a full game discovery platform where users can:
-
-- Browse games
-- Search and filter games
-- View game details
-- Create accounts
-- Save games to a personal library
-- Mark games as want to play, playing, completed, or dropped
-- Rate and review games
-- Receive personalized recommendations
-- View trending and top-rated games
-
-Admin users will eventually be able to:
-
-- Add games
-- Update games
-- Delete games
-- Manage game information
-- Moderate reviews
+- REST API using Spring Boot
+- Game CRUD foundation
+- Game search and filtering
+- Pagination and sorting
+- DTO-based request and response handling
+- Bean validation
+- Global exception handling
+- User registration and login
+- Spring Security authentication
+- JWT token generation and validation
+- Protected routes
+- Personal user game library
+- Game status tracking
 
 ---
 
@@ -68,9 +110,11 @@ Admin users will eventually be able to:
 - Spring Boot
 - Spring Web
 - Spring Data JPA
+- Spring Security
+- JWT
 - Bean Validation
 - Maven
-- MySQL or PostgreSQL
+- PostgreSQL or MySQL
 - Postman
 
 ---
@@ -142,13 +186,20 @@ Current testing includes:
 - Retrieving game records
 - Updating game records
 - Deleting game records
-- Searching game records
+- Searching and filtering game records
+- Testing pagination and sorting
+- Registering users
+- Logging in users
+- Testing protected routes with JWT tokens
+- Adding games to a user's library
+- Updating a game's library status
+- Removing games from a user's library
 - Confirming validation behavior
-- Confirming basic error handling
+- Confirming error handling behavior
 
 ---
 
-## What I Learned In Week 1
+## What I Learned in Week 1
 
 During Week 1, I practiced:
 
@@ -168,19 +219,38 @@ During Week 1, I practiced:
 
 ---
 
-## What I learned In Week 2
+## What I Learned in Week 2
 
-During week 2, I practiced:
+During Week 2, I practiced:
 
-- Improving relationships between games, genres, and platforms
-- Improve filtering by title, genre, and platform
-- Add pagination to game results e.g. (/api/games)
-- Add sorting to game results e.g. (/api/games)
-- Improved validation messages
-- Improved error response formatting
-- Add more sample game data
-- Continue testing with Postman
-- Update the README with Week 2 progress
+- Building more advanced GET endpoints
+- Using request parameters for filtering
+- Adding pagination with Spring Data
+- Adding sorting to API results
+- Filtering games by title, genre, platform, and release date
+- Improving validation messages
+- Improving error response formatting
+- Adding sample data for testing
+- Testing search, filtering, pagination, and sorting in Postman
+
+---
+
+## What I Learned in Week 3
+
+During Week 3, I practiced:
+
+- Adding Spring Security to a Spring Boot project
+- Creating user registration and login functionality
+- Hashing passwords before saving users
+- Generating JWT tokens after login
+- Validating JWT tokens on protected requests
+- Creating a custom JWT authentication filter
+- Using the authenticated user's email to access user-specific data
+- Protecting API endpoints from unauthenticated users
+- Creating user-owned resources
+- Building a personal game library feature
+- Updating and deleting records that belong to the authenticated user
+- Handling authentication and library-related exceptions
 
 ---
 
@@ -188,16 +258,11 @@ During week 2, I practiced:
 
 Planned future features include:
 
-- User registration
-- User login
-- JWT authentication
-- Role-based authorization
-- User game library
-- Game status tracking
 - Reviews and ratings
 - Recommendation engine
 - Trending games
 - Top-rated games
+- Role-based authorization for admin users
 - Swagger/OpenAPI documentation
 - Unit and integration testing
 - Docker support
@@ -207,20 +272,24 @@ Planned future features include:
 
 ## Project Status
 
-This project is currently in early development.
+This project is currently in early development, but the main backend foundation is working.
 
-Current milestone:
+Current milestones:
 
 ```text
-Week 1 (complete): Core Spring Boot backend foundation is working.
+Week 1 complete: Core Spring Boot backend foundation is working.
 ```
 
 ```text
-Week 2 (complete): The main games GET API can now search games with filters such as title, releaseDate, genre, and platform. The API pagination and sorting functionality is working.
+Week 2 complete: The games API supports filtering, pagination, and sorting.
+```
+
+```text
+Week 3 complete: User authentication, JWT security, protected routes, and the personal game library feature are working.
 ```
 
 Next milestone:
 
 ```text
-Week 3 (in-progress): User register and login functionality with Spring Security incorporated with it also a library where users can save their games to.
+Week 4 in progress: Users should be able to write reviews for games, and the backend should begin supporting game recommendations.
 ```

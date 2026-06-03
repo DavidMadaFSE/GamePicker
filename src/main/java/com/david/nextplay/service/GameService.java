@@ -1,14 +1,15 @@
 package com.david.nextplay.service;
 
-import com.david.nextplay.dto.CreateGameRequest;
-import com.david.nextplay.dto.GameResponse;
+import com.david.nextplay.dto.game.CreateGameRequest;
+import com.david.nextplay.dto.game.GameResponse;
 import com.david.nextplay.entity.Game;
 import com.david.nextplay.enums.Genre;
 import com.david.nextplay.enums.Platform;
-import com.david.nextplay.exception.GameAlreadyExistsException;
+import com.david.nextplay.exception.GameConflictException;
 import com.david.nextplay.repository.GameRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,13 +21,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class GameService {
 
         private final GameRepository gameRepository;
-
-        public GameService(GameRepository gameRepository) {
-                this.gameRepository = gameRepository;
-        }
 
         public Page<GameResponse> getGames(String title, LocalDate releaseDate, Genre genre, Platform platform,
                         int page, int size, String sortBy, String sortDir) {
@@ -53,7 +51,7 @@ public class GameService {
         public GameResponse createGame(CreateGameRequest request) {
                 if (gameRepository.existsByTitleIgnoreCaseAndReleaseDate(request.getTitle(),
                                 request.getReleaseDate())) {
-                        throw new GameAlreadyExistsException(
+                        throw new GameConflictException(
                                         "Game with title '" + request.getTitle() + "' and release date "
                                                         + request.getReleaseDate() + " already exists.");
                 }
