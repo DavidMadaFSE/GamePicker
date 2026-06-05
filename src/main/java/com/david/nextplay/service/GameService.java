@@ -19,6 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +27,7 @@ public class GameService {
 
         private final GameRepository gameRepository;
 
+        @Transactional(readOnly = true)
         public Page<GameResponse> getGames(String title, LocalDate releaseDate, Genre genre, Platform platform,
                         int page, int size, String sortBy, String sortDir) {
                 Sort sort = sortDir.equalsIgnoreCase("desc")
@@ -41,6 +43,7 @@ public class GameService {
                 return games.map(this::mapToGameResponse);
         }
 
+        @Transactional(readOnly = true)
         public GameResponse getGameById(Long id) {
                 Game game = gameRepository.findById(id)
                                 .orElseThrow(() -> new EntityNotFoundException("Game with ID " + id + " not found."));
@@ -48,6 +51,7 @@ public class GameService {
                 return mapToGameResponse(game);
         }
 
+        @Transactional
         public GameResponse createGame(CreateGameRequest request) {
                 if (gameRepository.existsByTitleIgnoreCaseAndReleaseDate(request.getTitle(),
                                 request.getReleaseDate())) {
@@ -77,6 +81,7 @@ public class GameService {
                                 .toList();
         }
 
+        @Transactional
         public GameResponse updateGame(Long id, CreateGameRequest request) {
                 Game game = gameRepository.findById(id)
                                 .orElseThrow(() -> new EntityNotFoundException("Game with ID " + id + " not found."));
@@ -93,6 +98,7 @@ public class GameService {
                 return mapToGameResponse(game);
         }
 
+        @Transactional
         public void deleteGame(Long id) {
                 Game game = gameRepository.findById(id)
                                 .orElseThrow(() -> new EntityNotFoundException("Game with ID " + id + " not found."));
@@ -100,6 +106,7 @@ public class GameService {
                 gameRepository.delete(game);
         }
 
+        @Transactional(readOnly = true)
         public List<GameResponse> searchGames(String title, LocalDate releaseDate, Genre genre, Platform platform) {
                 List<Game> games = gameRepository.findAll();
 

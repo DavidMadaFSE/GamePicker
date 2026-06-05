@@ -71,4 +71,16 @@ public class GlobalExceptionHandler {
                                 .status(HttpStatus.CONFLICT)
                                 .body(error);
         }
+
+        @ExceptionHandler(ReviewConflictException.class)
+        public ResponseEntity<ErrorResponse> handleReviewConflict(ReviewConflictException ex) {
+                ErrorResponse error = new ErrorResponse(
+                                ex.getMessage(),
+                                HttpStatus.CONFLICT.value(),
+                                LocalDateTime.now());
+
+                return ResponseEntity
+                                .status(HttpStatus.CONFLICT)
+                                .body(error);
+        }
 }

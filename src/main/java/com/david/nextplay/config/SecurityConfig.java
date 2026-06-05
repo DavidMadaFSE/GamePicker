@@ -32,16 +32,33 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/health/**").permitAll()
+
+                        // Public game routes
                         .requestMatchers(HttpMethod.GET, "/api/games/**").permitAll()
+
+                        // Review routes
+                        .requestMatchers(HttpMethod.POST, "/api/games/*/reviews").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/users/me/reviews").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/api/reviews/*").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/reviews/*").authenticated()
+
+                        // User routes
+                        .requestMatchers(HttpMethod.GET, "/api/users/me").authenticated()
+
+                        // Library routes
+                        .requestMatchers("/api/library/**").authenticated()
+
+                        // Recommendation routes
+                        .requestMatchers("/api/recommendations/**").authenticated()
+
+                        // Admin game routes
                         .requestMatchers(HttpMethod.POST, "/api/games/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/games/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/games/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/users/me").authenticated()
-                        .requestMatchers("/api/library/**").authenticated()
-                        .requestMatchers("/api/health/**").permitAll()
+
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
     }
 }

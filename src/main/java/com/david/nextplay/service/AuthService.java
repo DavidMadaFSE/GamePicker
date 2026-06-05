@@ -2,6 +2,7 @@ package com.david.nextplay.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.david.nextplay.dto.auth.AuthResponse;
 import com.david.nextplay.dto.auth.LoginRequest;
@@ -22,6 +23,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
+    @Transactional
     public UserResponse register(RegisterRequest request) {
         boolean email = userRepository.existsByEmail(request.getEmail());
         boolean username = userRepository.existsByUsername(request.getUsername());
@@ -53,6 +55,7 @@ public class AuthService {
                 savedUser.getUpdatedAt());
     }
 
+    @Transactional(readOnly = true)
     public AuthResponse login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new UnauthorizedException("Invalid Credentials"));

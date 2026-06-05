@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.david.nextplay.dto.library.AddLibraryEntryRequest;
 import com.david.nextplay.dto.library.LibraryEntryResponse;
@@ -32,6 +33,7 @@ public class LibraryService {
     private final UserRepository userRepository;
     private final GameRepository gameRepository;
 
+    @Transactional(readOnly = true)
     public Page<LibraryEntryResponse> getMyLibrary(
             Authentication authentication,
             GameStatus gameStatus,
@@ -55,6 +57,7 @@ public class LibraryService {
         return entries.map(this::mapToResponse);
     }
 
+    @Transactional
     public LibraryEntryResponse addEntryToLibrary(Authentication authentication, AddLibraryEntryRequest request) {
         String email = authentication.getName();
 
@@ -82,6 +85,7 @@ public class LibraryService {
         return mapToResponse(savedEntry);
     }
 
+    @Transactional
     public LibraryEntryResponse updateGameStatus(Authentication authentication, Long id, GameStatus gameStatus) {
         String email = authentication.getName();
 
@@ -99,6 +103,7 @@ public class LibraryService {
         return mapToResponse(savedEntry);
     }
 
+    @Transactional
     public void deleteEntry(Authentication authentication, Long id) {
         String email = authentication.getName();
 
