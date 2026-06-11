@@ -34,7 +34,7 @@ public class GameController {
             @RequestParam(required = false) Genre genre,
             @RequestParam(required = false) Platform platform,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "title") String sortBy,
             @RequestParam(defaultValue = "asc") String sortDir) {
         return ResponseEntity.ok(

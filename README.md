@@ -1,29 +1,30 @@
-# NextPlay Backend
+# NextPlay
 
-NextPlay is a Spring Boot backend for a game discovery and recommendation platform.
+NextPlay is a full-stack game discovery and recommendation application built with a Spring Boot backend and a React frontend.
 
 The goal of this project is to help users browse games, search and filter game data, save games to a personal library, track game progress, write reviews, and receive personalized game recommendations based on genres, platforms, ratings, library activity, and user reviews.
 
-This project is being built step-by-step while relearning and practicing Spring Boot backend development.
+This project is being built step-by-step while relearning and practicing Spring Boot backend development, frontend development, authentication, API integration, and full-stack application structure.
 
 ---
 
 ## Project Goal
 
-The final goal of NextPlay is to become a full backend platform where users can:
+The final goal of NextPlay is to become a complete full-stack platform where users can:
 
 - Browse games
 - Search and filter games
 - View game details
 - Create accounts
 - Log in securely
+- Stay authenticated with JWT-based login
 - Save games to a personal library
 - Track games as want to play, playing, completed, or dropped
 - Rate and review games
 - View reviews for games
 - View their own reviews
 - Receive personalized game recommendations
-- View trending and top-rated games
+- View a clean, modern frontend interface
 
 Admin users can eventually be able to:
 
@@ -106,9 +107,31 @@ Completed so far:
 - Added recommendation logic for suggesting games to users
 - Tested review and recommendation endpoints using Postman
 
+### Week 5 Complete
+
+The Week 5 goal was to build the frontend foundation, connect it to the backend, and create a modern user interface.
+
+Completed so far:
+
+- Created the React frontend for the NextPlay application
+- Set up frontend routing for the main pages
+- Added an authentication context to manage the logged-in user's auth state
+- Added protected route logic for pages that require login
+- Connected the frontend to backend authentication endpoints
+- Stored and reused the JWT token for authenticated requests
+- Built frontend pages for user login, registration, profile, game browsing, and user-specific features
+- Connected protected frontend pages to secured backend endpoints
+- Used `useEffect` for page-level data fetching where needed
+- Added loading and error handling for frontend API requests
+- Incorporated Tailwind CSS throughout the frontend
+- Updated the application styling to look cleaner, more modern, and more polished
+- Tested the frontend and backend together to make sure the application works as expected
+
 ---
 
 ## Core Features Implemented
+
+### Backend Features
 
 - REST API using Spring Boot
 - Game CRUD foundation
@@ -120,7 +143,8 @@ Completed so far:
 - User registration and login
 - Spring Security authentication
 - JWT token generation and validation
-- Protected routes
+- Custom JWT authentication filter
+- Protected backend routes
 - Role-based protection for admin game management
 - Personal user game library
 - Game status tracking
@@ -131,9 +155,27 @@ Completed so far:
 - Basic personalized game recommendations
 - Transaction handling in the service layer
 
+### Frontend Features
+
+- React frontend application
+- Page-based frontend structure
+- Client-side routing
+- Login and registration pages
+- Auth Context for global authentication state
+- Protected routes for authenticated pages
+- JWT storage and reuse for authenticated requests
+- Profile page connected to the authenticated user endpoint
+- Game browsing interface
+- User-specific frontend pages connected to protected backend APIs
+- Loading and error states for API requests
+- Tailwind CSS styling
+- Modernized UI design
+
 ---
 
 ## Tech Stack
+
+### Backend
 
 - Java
 - Spring Boot
@@ -146,6 +188,15 @@ Completed so far:
 - PostgreSQL or MySQL
 - Postman
 
+### Frontend
+
+- React
+- React Router
+- Tailwind CSS
+- JavaScript
+- Fetch API
+- Local Storage for JWT persistence
+
 ---
 
 ## How to Run the Project
@@ -154,10 +205,10 @@ Completed so far:
 
 ```bash
 git clone <your-repository-url>
-cd nextplay-backend
+cd nextplay
 ```
 
-### 2. Configure the database
+### 2. Configure the backend database
 
 Update the database settings inside:
 
@@ -189,7 +240,7 @@ spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 ```
 
-### 3. Run the application
+### 3. Run the backend
 
 ```bash
 mvn spring-boot:run
@@ -201,13 +252,24 @@ The backend should start on:
 http://localhost:8080
 ```
 
+### 4. Run the frontend
+
+From the frontend folder, install dependencies and start the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+The frontend should start on the local development URL shown in the terminal.
+
 ---
 
 ## Testing
 
 Postman is being used to manually test the backend.
 
-Current testing includes:
+Current backend testing includes:
 
 - Verifying that the backend starts successfully
 - Checking that the health route works
@@ -232,6 +294,20 @@ Current testing includes:
 - Testing recommendation results
 - Confirming validation behavior
 - Confirming error handling behavior
+
+Current frontend testing includes:
+
+- Registering a new user from the frontend
+- Logging in from the frontend
+- Saving the JWT token after login
+- Keeping the user authenticated after login
+- Redirecting unauthenticated users away from protected pages
+- Loading authenticated user profile data
+- Sending authenticated requests with the JWT token
+- Displaying backend data in frontend pages
+- Testing loading and error states
+- Confirming Tailwind CSS styling works across the application
+- Testing that the application is functional through the browser
 
 ---
 
@@ -310,6 +386,27 @@ During Week 4, I practiced:
 
 ---
 
+## What I Learned in Week 5
+
+During Week 5, I practiced:
+
+- Creating a frontend application for a Spring Boot backend
+- Organizing frontend code into pages, components, context, and route protection
+- Using React Router for navigation
+- Creating an Auth Context to manage login state across the application
+- Creating protected routes for pages that require authentication
+- Storing JWT tokens on the frontend
+- Sending JWT tokens in the `Authorization` header for protected backend requests
+- Fetching authenticated user data from the backend
+- Using `useEffect` for API calls that should run when a page loads
+- Managing loading and error states in React
+- Connecting frontend forms to backend endpoints
+- Using Tailwind CSS utility classes to style the application
+- Improving the UI so the project looks more modern and portfolio-ready
+- Testing the full application flow through the browser
+
+---
+
 ## API Features
 
 Current API features include:
@@ -318,6 +415,12 @@ Current API features include:
 Auth:
 POST   /api/auth/register
 POST   /api/auth/login
+```
+
+```text
+Users:
+GET    /api/users/me
+GET    /api/users/me/reviews
 ```
 
 ```text
@@ -333,7 +436,7 @@ DELETE /api/games/{id}
 Library:
 GET    /api/library
 POST   /api/library/{gameId}
-PATCH  /api/library/{id}
+PATCH  /api/library/{id}/status
 DELETE /api/library/{id}
 ```
 
@@ -341,7 +444,6 @@ DELETE /api/library/{id}
 Reviews:
 POST   /api/games/{gameId}/reviews
 GET    /api/games/{gameId}/reviews
-GET    /api/users/me/reviews
 PATCH  /api/reviews/{reviewId}
 DELETE /api/reviews/{reviewId}
 ```
@@ -350,6 +452,21 @@ DELETE /api/reviews/{reviewId}
 Recommendations:
 GET    /api/recommendations
 ```
+
+---
+
+## Frontend Pages
+
+Current frontend pages and flows include:
+
+- Home or landing page
+- Game browsing page
+- Login page
+- Register page
+- Profile page
+- Protected user pages
+- Library-related user flow
+- Recommendation-related user flow
 
 ---
 
@@ -364,14 +481,17 @@ Planned future features include:
 - Add top-rated games
 - Add Swagger/OpenAPI documentation
 - Add unit and integration testing
+- Add frontend form validation improvements
+- Improve responsive design for smaller screens
+- Add better success and error notifications
 - Add Docker support
-- Connect backend to a React and TypeScript frontend
+- Prepare the project for deployment
 
 ---
 
 ## Project Status
 
-This project is currently in early development, but the main backend foundation is working.
+This project is currently in active development, and both the backend foundation and frontend foundation are working.
 
 Current milestones:
 
@@ -391,8 +511,12 @@ Week 3 complete: User authentication, JWT security, protected routes, and the pe
 Week 4 complete: Game reviews, average ratings, and the first version of personalized recommendations are working.
 ```
 
+```text
+Week 5 complete: The React frontend is connected to the backend, protected routes are working, Tailwind CSS is integrated, and the application has a modern functional UI.
+```
+
 Next milestone:
 
 ```text
-Week 5 in progress: Improve the recommendation system, add testing, improve API documentation, and prepare the backend for frontend integration.
+Week 6: Improve the full-stack user experience, add stronger frontend validation, polish recommendation and library flows, and begin preparing the project for testing and deployment.
 ```
