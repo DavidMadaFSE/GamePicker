@@ -1,5 +1,7 @@
 package com.david.nextplay.config;
 
+import static org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher.pathPattern;
+
 import com.david.nextplay.filter.JwtAuthenticationFilter;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -79,22 +81,23 @@ public class SecurityConfig {
                                 "/swagger-ui.html")
                         .permitAll()
 
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/health/**").permitAll()
+                        .requestMatchers(pathPattern("/api/auth/**")).permitAll()
+                        .requestMatchers(pathPattern("/api/health")).permitAll()
+                        .requestMatchers(pathPattern("/api/health/**")).permitAll()
 
                         // Public game routes
-                        .requestMatchers(HttpMethod.GET, "/api/games").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/games/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/games/*/reviews").permitAll()
+                        .requestMatchers(pathPattern(HttpMethod.GET, "/api/games")).permitAll()
+                        .requestMatchers(pathPattern(HttpMethod.GET, "/api/games/**")).permitAll()
+                        .requestMatchers(pathPattern(HttpMethod.GET, "/api/games/{gameId}/reviews")).permitAll()
 
                         // Review routes
-                        .requestMatchers(HttpMethod.POST, "/api/games/*/reviews").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/users/me/reviews").authenticated()
-                        .requestMatchers(HttpMethod.PATCH, "/api/reviews/*").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/reviews/*").authenticated()
+                        .requestMatchers(pathPattern(HttpMethod.POST, "/api/games/{gameId}/reviews")).authenticated()
+                        .requestMatchers(pathPattern(HttpMethod.GET, "/api/users/me/reviews")).authenticated()
+                        .requestMatchers(pathPattern(HttpMethod.PATCH, "/api/reviews/{id}")).authenticated()
+                        .requestMatchers(pathPattern(HttpMethod.DELETE, "/api/reviews/{id}")).authenticated()
 
                         // User routes
-                        .requestMatchers(HttpMethod.GET, "/api/users/me").authenticated()
+                        .requestMatchers(pathPattern(HttpMethod.GET, "/api/users/me")).authenticated()
 
                         // Library routes
                         .requestMatchers("/api/library/**").authenticated()
