@@ -26,12 +26,13 @@ public class AuthService {
     @Transactional
     public UserResponse register(RegisterRequest request) {
         boolean email = userRepository.existsByEmail(request.getEmail());
-        boolean username = userRepository.existsByUsername(request.getUsername());
 
         if (email) {
             throw new UserConflictException("User already exists with email: " + email);
         }
 
+        boolean username = userRepository.existsByUsername(request.getUsername());
+        
         if (username) {
             throw new UserConflictException("User already exists with username: " + username);
         }

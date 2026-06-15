@@ -67,7 +67,7 @@ public class ReviewService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserConflictException("User not found."));
 
-        Sort sort = sortBy.equalsIgnoreCase("desc")
+        Sort sort = sortDir.equalsIgnoreCase("desc")
                 ? Sort.by(sortBy).descending()
                 : Sort.by(sortBy).ascending();
 

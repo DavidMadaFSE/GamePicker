@@ -1,6 +1,10 @@
 package com.david.nextplay.config;
 
 import com.david.nextplay.filter.JwtAuthenticationFilter;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -29,6 +33,15 @@ public class SecurityConfig {
     }
 
     @Bean
+    public OpenAPI nextPlayOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("NextPlay API")
+                        .description("Backend API for game discovery, reviews, libraries, and recommendations")
+                        .version("1.0.0"));
+    }
+
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(java.util.List.of("http://localhost:5173"));
@@ -48,6 +61,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // Allow swagger through security
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html")
+                        .permitAll()
+
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/health/**").permitAll()
 

@@ -4,7 +4,7 @@ NextPlay is a full-stack game discovery and recommendation application built wit
 
 The goal of this project is to help users browse games, search and filter game data, save games to a personal library, track game progress, write reviews, and receive personalized game recommendations based on genres, platforms, ratings, library activity, and user reviews.
 
-This project is being built step-by-step while relearning and practicing Spring Boot backend development, frontend development, authentication, API integration, and full-stack application structure.
+This project is being built step-by-step while relearning and practicing Spring Boot backend development, frontend development, authentication, API integration, testing, API documentation, Docker, and full-stack application structure.
 
 ---
 
@@ -127,6 +127,49 @@ Completed so far:
 - Updated the application styling to look cleaner, more modern, and more polished
 - Tested the frontend and backend together to make sure the application works as expected
 
+### Week 6 Complete
+
+The Week 6 goal was to improve project quality by adding automated tests, API documentation, and Docker support.
+
+Completed so far:
+
+- Added unit tests using JUnit
+- Added Mockito-based service tests
+- Added controller tests for API endpoints
+- Tested service-layer business logic without needing the full application to run
+- Tested controller behavior such as request handling, responses, and validation
+- Mocked dependencies such as repositories, services, authentication, and security-related objects
+- Added tests for authentication-related functionality
+- Added tests for game service functionality
+- Added tests for library service functionality
+- Added tests for review service functionality
+- Added tests for recommendation service functionality
+- Added Swagger/OpenAPI documentation
+- Added Swagger UI for viewing and testing API endpoints
+- Added Docker support to make the project easier to run in different environments
+- Improved the project structure so it is closer to being portfolio-ready
+
+### Week 7 In Progress
+
+The Week 7 goal is to move the project into the deployment phase and prepare NextPlay to run outside of the local development environment.
+
+Planned tasks:
+
+- Prepare the backend for production deployment
+- Prepare the frontend for production deployment
+- Configure production environment variables
+- Move sensitive values such as database credentials and JWT secrets out of hardcoded configuration
+- Create or improve production-ready Docker configuration
+- Update Docker Compose setup for backend, frontend, and database services
+- Configure the backend to connect to a production database
+- Configure frontend API base URLs for deployed backend requests
+- Review and update CORS settings for the deployed frontend domain
+- Build the frontend for production
+- Test the backend and frontend using production-like settings
+- Verify Swagger/OpenAPI documentation works correctly after deployment
+- Add deployment instructions to the README
+- Prepare the project for deployment on a hosting platform such as Render, Railway, Fly.io, Vercel, Netlify, or another cloud provider
+
 ---
 
 ## Core Features Implemented
@@ -154,6 +197,11 @@ Completed so far:
 - Average game rating calculation
 - Basic personalized game recommendations
 - Transaction handling in the service layer
+- Unit testing with JUnit
+- Service testing with Mockito
+- Controller testing
+- Swagger/OpenAPI documentation
+- Docker support
 
 ### Frontend Features
 
@@ -184,8 +232,12 @@ Completed so far:
 - Spring Security
 - JWT
 - Bean Validation
+- JUnit
+- Mockito
+- Swagger/OpenAPI
 - Maven
 - PostgreSQL or MySQL
+- Docker
 - Postman
 
 ### Frontend
@@ -263,11 +315,69 @@ npm run dev
 
 The frontend should start on the local development URL shown in the terminal.
 
+### 5. Run with Docker
+
+If Docker is configured for the project, run the application using:
+
+```bash
+docker compose up --build
+```
+
+To stop the running containers:
+
+```bash
+docker compose down
+```
+
+---
+
+## Deployment Plan
+
+Week 7 focuses on preparing the project for deployment.
+
+Deployment preparation includes:
+
+- Creating production-ready backend configuration
+- Creating production-ready frontend configuration
+- Using environment variables for sensitive values
+- Configuring database connection settings for production
+- Configuring JWT secret and token expiration settings for production
+- Updating CORS settings for the deployed frontend URL
+- Building the React frontend for production
+- Running the backend with production-like settings
+- Testing API requests against the deployed backend
+- Verifying Swagger/OpenAPI documentation after deployment
+- Using Docker or Docker Compose where needed
+- Adding clear deployment instructions for future use
+
+Potential deployment options include:
+
+- Render
+- Railway
+- Fly.io
+- Vercel
+- Netlify
+- Supabase or Neon for PostgreSQL hosting
+
+---
+
+## API Documentation
+
+Swagger/OpenAPI documentation has been added to the backend.
+
+When the backend is running, the Swagger UI can be used to view and test API endpoints from the browser.
+
+Common Swagger UI URL:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
 ---
 
 ## Testing
 
-Postman is being used to manually test the backend.
+Postman is being used to manually test the backend, and JUnit/Mockito are being used for automated backend testing.
 
 Current backend testing includes:
 
@@ -294,6 +404,19 @@ Current backend testing includes:
 - Testing recommendation results
 - Confirming validation behavior
 - Confirming error handling behavior
+
+Automated backend testing includes:
+
+- Unit tests using JUnit
+- Service tests using Mockito
+- Controller tests for API endpoints
+- Tests for successful service behavior
+- Tests for exception and failure cases
+- Tests for authentication-related logic
+- Tests for game service logic
+- Tests for library service logic
+- Tests for review service logic
+- Tests for recommendation service logic
 
 Current frontend testing includes:
 
@@ -407,6 +530,27 @@ During Week 5, I practiced:
 
 ---
 
+## What I Learned in Week 6
+
+During Week 6, I practiced:
+
+- Writing unit tests with JUnit
+- Using Mockito to mock dependencies
+- Testing service-layer business logic
+- Testing controller endpoints
+- Using mock repositories and mock services
+- Testing successful cases and failure cases
+- Testing validation and exception behavior
+- Testing authenticated service methods
+- Understanding the difference between unit tests and manual Postman testing
+- Improving backend reliability through automated tests
+- Adding Swagger/OpenAPI documentation to a Spring Boot project
+- Using Swagger UI to view and test documented API endpoints
+- Adding Docker support to make the project easier to run
+- Improving the project so it looks more professional and portfolio-ready
+
+---
+
 ## API Features
 
 Current API features include:
@@ -453,6 +597,11 @@ Recommendations:
 GET    /api/recommendations
 ```
 
+```text
+API Documentation:
+GET    /swagger-ui/index.html
+```
+
 ---
 
 ## Frontend Pages
@@ -474,24 +623,26 @@ Current frontend pages and flows include:
 
 Planned future features include:
 
+- Complete deployment setup for the full-stack application
+- Add production environment configuration
+- Improve Docker setup for full-stack deployment
+- Add integration testing
+- Build admin frontend pages
+- Add frontend create, update, and delete game forms for admin users
 - Improve recommendation algorithm
 - Add weighted recommendation scoring
 - Add review moderation for admin users
 - Add trending games
 - Add top-rated games
-- Add Swagger/OpenAPI documentation
-- Add unit and integration testing
 - Add frontend form validation improvements
 - Improve responsive design for smaller screens
 - Add better success and error notifications
-- Add Docker support
-- Prepare the project for deployment
 
 ---
 
 ## Project Status
 
-This project is currently in active development, and both the backend foundation and frontend foundation are working.
+This project is currently in active development. The backend foundation, frontend foundation, authentication flow, protected routes, review system, recommendation system, automated testing, API documentation, and Docker support are now working. The project is now moving into the deployment phase.
 
 Current milestones:
 
@@ -515,8 +666,12 @@ Week 4 complete: Game reviews, average ratings, and the first version of persona
 Week 5 complete: The React frontend is connected to the backend, protected routes are working, Tailwind CSS is integrated, and the application has a modern functional UI.
 ```
 
+```text
+Week 6 complete: Unit tests, controller tests, Swagger/OpenAPI documentation, and Docker support have been added to improve project quality and maintainability.
+```
+
 Next milestone:
 
 ```text
-Week 6: Improve the full-stack user experience, add stronger frontend validation, polish recommendation and library flows, and begin preparing the project for testing and deployment.
+Week 7 in progress: Prepare the full-stack application for deployment by configuring production settings, environment variables, Docker, hosting, and production-ready frontend/backend communication.
 ```
