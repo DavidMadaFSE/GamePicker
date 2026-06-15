@@ -83,7 +83,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/health/**").permitAll()
 
                         // Public game routes
+                        .requestMatchers(HttpMethod.GET, "/api/games").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/games/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/games/*/reviews").permitAll()
 
                         // Review routes
                         .requestMatchers(HttpMethod.POST, "/api/games/*/reviews").authenticated()
