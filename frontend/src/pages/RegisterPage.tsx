@@ -42,7 +42,7 @@ export default function RegisterPage() {
             <div className="w-full max-w-md rounded-3xl border border-slate-800/80 bg-slate-900/95 p-8 shadow-2xl shadow-black/30 backdrop-blur-sm">
                 <div className="mb-8 text-center">
                     <p className="text-sm uppercase tracking-[0.35em] text-emerald-400/80">Create account</p>
-                    <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white">Register for NextPlay</h1>
+                    <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white">Register for GamePicker</h1>
                     <p className="mt-2 text-sm text-slate-400">Get started with your personalized game library and recommendations.</p>
                 </div>
 
