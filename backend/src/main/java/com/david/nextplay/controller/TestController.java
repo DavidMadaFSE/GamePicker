@@ -10,6 +10,6 @@ public class TestController {
     
     @GetMapping("/health")
     public String health() {
-        return "NextPlay API is running";
+        return "GamePicker API is running";
     }
 }

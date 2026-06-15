@@ -46,7 +46,7 @@ public class SecurityConfig {
     public OpenAPI nextPlayOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("NextPlay API")
+                        .title("GamePicker API")
                         .description("Backend API for game discovery, reviews, libraries, and recommendations")
                         .version("1.0.0"));
     }

@@ -1,16 +1,20 @@
-# NextPlay
+# GamePicker
 
-NextPlay is a full-stack game discovery and recommendation application built with a Spring Boot backend and a React frontend.
+GamePicker is a full-stack game discovery and recommendation application built with a Spring Boot backend and a React frontend.
 
 The goal of this project is to help users browse games, search and filter game data, save games to a personal library, track game progress, write reviews, and receive personalized game recommendations based on genres, platforms, ratings, library activity, and user reviews.
 
 This project is being built step-by-step while relearning and practicing Spring Boot backend development, frontend development, authentication, API integration, testing, API documentation, Docker, and full-stack application structure.
 
+## Project Name
+
+This project was originally developed under the name 'NextPlay'. It was later renamed to GamePicker to better reflect the app's focus on helping users discover, save, and choose games to play.
+
 ---
 
 ## Project Goal
 
-The final goal of NextPlay is to become a complete full-stack platform where users can:
+The final goal of GamePicker is to become a complete full-stack platform where users can:
 
 - Browse games
 - Search and filter games
@@ -113,7 +117,7 @@ The Week 5 goal was to build the frontend foundation, connect it to the backend,
 
 Completed so far:
 
-- Created the React frontend for the NextPlay application
+- Created the React frontend for the GamePicker application
 - Set up frontend routing for the main pages
 - Added an authentication context to manage the logged-in user's auth state
 - Added protected route logic for pages that require login
@@ -151,7 +155,7 @@ Completed so far:
 
 ### Week 7 In Progress
 
-The Week 7 goal is to move the project into the deployment phase and prepare NextPlay to run outside of the local development environment.
+The Week 7 goal is to move the project into the deployment phase and prepare GamePicker to run outside of the local development environment.
 
 Planned tasks:
 

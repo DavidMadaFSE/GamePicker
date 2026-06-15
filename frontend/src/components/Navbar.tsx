@@ -29,7 +29,7 @@ export default function NavBar() {
             />
             <div className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-4 border-b border-slate-800/90 bg-slate-950/95 px-4 py-3 text-slate-100 backdrop-blur-xl md:hidden">
                 <div>
-                    <p className="text-xs uppercase tracking-[0.35em] text-sky-400/80">NextPlay</p>
+                    <p className="text-xs uppercase tracking-[0.35em] text-sky-400/80">GamePicker</p>
                     <p className="text-lg font-semibold text-white">Game hub</p>
                 </div>
                 <button
@@ -43,7 +43,7 @@ export default function NavBar() {
 
             <aside className={`fixed inset-y-0 left-0 z-50 w-72 transform border-r border-slate-800/90 bg-slate-950/95 px-6 py-8 text-slate-100 shadow-xl shadow-black/20 backdrop-blur-xl transition duration-300 ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
                 <div className="mb-10">
-                    <p className="text-xs uppercase tracking-[0.35em] text-sky-400/80">NextPlay</p>
+                    <p className="text-xs uppercase tracking-[0.35em] text-sky-400/80">GamePicker</p>
                     <h1 className="mt-4 text-3xl font-semibold text-white">Game hub</h1>
                     <p className="mt-2 text-sm text-slate-400">Browse, save, and discover new games.</p>
                 </div>
